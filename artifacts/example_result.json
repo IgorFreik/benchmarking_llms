@@ -1,0 +1,14 @@
+{
+  "ChristianAzinn/e5-base-v2-gguf/e5-base-v2.Q4-0-RTE3.json": {
+    "metric": 0.956394,
+    "task_name": "RTE3",
+    "model_name": "ChristianAzinn/e5-base-v2-gguf",
+    "quant": "q40"
+  },
+  "intfloat/e5-base-v2-RTE3.json": {
+    "metric": 0.957161,
+    "task_name": "RTE3",
+    "model_name": "intfloat/e5-base-v2",
+    "quant": null
+  }
+}
