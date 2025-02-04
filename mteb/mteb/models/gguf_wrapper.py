@@ -14,7 +14,7 @@ from .wrapper import Wrapper
 logger = logging.getLogger(__name__)
 
 
-def ggug_wrapper(
+def gguf_wrapper(
     model_path: str,
     model_prompts: dict[str, str] | None = None,
     **kwargs,
