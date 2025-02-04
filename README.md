@@ -36,6 +36,7 @@ pip install -r requirements_nonquantized.txt
 export TASK_NAME=RTE3
 export MODEL_NAME=nomic-ai/nomic-embed-text-v1.5
 ```
+The `MODEL_NAME` here is a valid model name to be pulled from Hugging Face.
 3. Run the models:
 ```commandline
 python src/run_nonquantized.py
@@ -53,6 +54,7 @@ pip install -r requirements_llamacpp.txt
 export TASK_NAME=RTE3
 export MODEL_NAME=nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q8_0.gguf
 ```
+The `MODEL_NAME` here should be in format `HF_MODEL/FILE_NAME.gguf`. HF_MODEL -- a valid HF model repository, `FILE_NAME` -- a file name within that repository to use. It is assumed that each represents a single separate quantized model at a specific quantization level.
 3. Run the models:
 ```commandline
 python src/run_llamacpp.py

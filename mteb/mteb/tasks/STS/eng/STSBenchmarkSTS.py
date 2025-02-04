@@ -18,7 +18,7 @@ class STSBenchmarkSTS(AbsTaskSTS):
         type="STS",
         category="s2s",
         modalities=["text"],
-        eval_splits=["test"],
+        eval_spits=["test"],
         eval_langs=["eng-Latn"],
         main_score="cosine_spearman",
         date=None,

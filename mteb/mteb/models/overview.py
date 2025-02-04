@@ -163,7 +163,7 @@ def get_model_meta(model_name: str, revision: str | None = None) -> ModelMeta:
         return MODEL_REGISTRY[model_name]
     elif 'gguf' in model_name:
         return ModelMeta(
-            loader=gguf_wrapper.gguf_loader
+            loader=gguf_wrapper.gguf_wrapper
         )
     else:  # assume it is a sentence-transformers model
         logger.info(
