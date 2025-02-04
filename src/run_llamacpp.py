@@ -1,6 +1,8 @@
 import mteb
 from huggingface_hub import hf_hub_download
 import os
+import json
+
 
 def download_model_for_llama_cpp(model_name: str, save_directory: str, gguf_files: list):
     """
@@ -31,7 +33,7 @@ if __name__ == "__main__":
 
     MODEL_NAME = os.environ.get("MODEL_NAME")
     TASK_NAME = os.environ.get("TASK_NAME")
-    SAVE_TO_S3 = bool(os.environ.get("SAVE_TO_S3", "False"))
+    SAVE_TO_S3 = os.environ.get("SAVE_TO_S3")
 
     HF_REPO = '/'.join(MODEL_NAME.split('/')[:-1])
     GGUF_FILE = MODEL_NAME.split('/')[-1]
@@ -51,8 +53,13 @@ if __name__ == "__main__":
     result_path = f'{SAVE_DIR}/{model_pth_formatted}/no_revision_available/{TASK_NAME}.json'
     print(f'RESULTS PATH:\n{result_path}')
 
+    with open(result_path, 'r') as f:
+        res = json.load(f)
+        print(f">>> RESULTS MAIN SCORE: {res['scores']['test'][0]['main_score']}")
+        print(f">>> FULL RESULTS: {res['scores']['test'][0]}")
+
     # Save results
-    if SAVE_TO_S3:
+    if SAVE_TO_S3 and SAVE_TO_S3 == "True":
         import boto3
 
         BUCKET_NAME = "bep-results"
