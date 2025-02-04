@@ -54,7 +54,7 @@ def format_df(df):
 
 if __name__ == "__main__":
     RAW_RESULT_PATH = os.environ.get('RESULTS_PATH', 'artifacts/example_result.json')
-    df = pd.read_json('bep_results.json').T
+    df = pd.read_json(RAW_RESULT_PATH).T
 
     # Filter valid models
     all_models = [cfg['model'] for cfg in MODEL_CONFIGS_MTEB] + [cfg['gguf'] for cfg in MODEL_CONFIGS_MTEB]
