@@ -29,6 +29,7 @@ To reproduce the results of this study, no changes are required -- all correspon
 
 1. First, install dependencies:
 ```commandline
+pip install ./mteb
 pip install -r requirements_nonquantized.txt
 ```
 2. Specify the task and model to evaluate in the environment variables `TASK_NAME` and `MODEL_NAME`, for example:
@@ -47,6 +48,7 @@ python src/run_nonquantized.py
 
 1. First, install dependencies:
 ```commandline
+pip install ./mteb
 pip install -r requirements_llamacpp.txt
 ```
 2. Specify the task and model to evaluate in the environment variables `TASK_NAME` and `MODEL_NAME`, for example:
@@ -61,6 +63,38 @@ python src/run_llamacpp.py
 ```
 4. Done, the main score, full results and saved results path are printed by the script.
 
+### [Optional] Creating aggregated tables tables
+
+The script `create_result_tables.py` script processes and formats results from a JSON file and saves the output as a CSV and LaTeX file.
+Here is how to run it:
+1. Specify the JSON results path as environment variable: 
+```commandline
+export RESULTS_PATH=path/to/file.json
+```
+The following format for results is expected:
+```JSON
+{
+  "ChristianAzinn/e5-base-v2-gguf/e5-base-v2.Q4-0-RTE3.json": {
+    "metric": 0.956394,
+    "task_name": "RTE3",
+    "model_name": "ChristianAzinn/e5-base-v2-gguf",
+    "quant": "q40"
+  },
+  "intfloat/e5-base-v2-RTE3.json": {
+    "metric": 0.957161,
+    "task_name": "RTE3",
+    "model_name": "intfloat/e5-base-v2",
+    "quant": null
+  },
+  ...
+}
+```
+
+### [Optional] AWS orchestration
+
+Given the large number of independent model runs required for this study and the highly parallelizable nature of the process, AWS orchestration was used to accelerate and structure the workflow.
+
+The implementation can be found in the aws_orchestration folder. The `main.py` file is the entry point. However, due to the substantial AWS account requirements and potential high costs, running this setup is not expected within the scope of this project. Instead, it serves as a transparent description of the approach used to obtain the reported results.
 
 ## Acknowledgments
 
