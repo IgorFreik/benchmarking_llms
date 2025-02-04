@@ -1,0 +1,27 @@
+{
+    "hellaswag": {
+        "google/flan-t5-large": true,
+        "Qwen/Qwen2.5-1.5B-Instruct": true,
+        "HuggingFaceTB/SmolLM-135M": true
+    },
+    "glue": {
+        "google/flan-t5-large": true,
+        "Qwen/Qwen2.5-1.5B-Instruct": true,
+        "HuggingFaceTB/SmolLM-135M": true
+    },
+    "lambada": {
+        "google/flan-t5-large": true,
+        "HuggingFaceTB/SmolLM-135M": true,
+        "Qwen/Qwen2.5-1.5B-Instruct": true
+    },
+    "med_concepts_qa": {
+        "google/flan-t5-large": true,
+        "HuggingFaceTB/SmolLM-135M": true,
+        "Qwen/Qwen2.5-1.5B-Instruct": true
+    },
+    "mathqa": {
+        "google/flan-t5-large": true,
+        "HuggingFaceTB/SmolLM-135M": true,
+        "Qwen/Qwen2.5-1.5B-Instruct": true
+    }
+}
