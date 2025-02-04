@@ -53,7 +53,10 @@ def format_df(df):
     return res_df
 
 if __name__ == "__main__":
-    RAW_RESULT_PATH = os.environ.get('RESULTS_PATH', 'artifacts/example_result.json')
+    RAW_RESULT_PATH = os.environ.get(
+        'RESULTS_PATH',
+        os.path.join(os.path.dirname(__file__), 'artifacts', 'example_result.json')
+    )
     df = pd.read_json(RAW_RESULT_PATH).T
 
     # Filter valid models
@@ -81,6 +84,22 @@ if __name__ == "__main__":
         on=['Model', 'Quantization'],
         how='outer',
         suffixes=(f'_{RESULT_TASKS[0]}', f'_{RESULT_TASKS[1]}')
-    )
-    res12_latex = res12.set_index(['Model', 'Quantization']).sort_index().to_latex().replace('_', '\_')
+    ).set_index(['Model', 'Quantization']).sort_index()
+
+    # Print results
+    print("Formatted Results Table:")
+    print(res12)
+
+    # Save results to CSV and LaTeX files
+    OUTPUT_DIR = 'results_output'
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    res12_csv_path = os.path.join(OUTPUT_DIR, 'results.csv')
+    res12_latex_path = os.path.join(OUTPUT_DIR, 'results.tex')
+
+    res12.to_csv(res12_csv_path, index=False)
+    with open(res12_latex_path, 'w') as f:
+        f.write(res12.to_latex().replace('_', '\_'))
+
+    print(f"Results saved to: {res12_csv_path} and {res12_latex_path}")
+
 
