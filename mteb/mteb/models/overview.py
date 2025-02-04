@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Iterable
-from functools import lru_cache
+from functools import lru_cache, partial
 from typing import Any
 
 from huggingface_hub import ModelCard
@@ -163,7 +163,14 @@ def get_model_meta(model_name: str, revision: str | None = None) -> ModelMeta:
         return MODEL_REGISTRY[model_name]
     elif 'gguf' in model_name:
         return ModelMeta(
-            loader=gguf_wrapper.gguf_wrapper
+            loader=partial(
+                gguf_wrapper.gguf_wrapper,
+                model_path=model_name
+            ),
+            name = model_name,
+            revision = None,
+            languages = None,
+            release_date = None,
         )
     else:  # assume it is a sentence-transformers model
         logger.info(
