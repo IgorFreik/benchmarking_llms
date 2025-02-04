@@ -29,7 +29,7 @@ To reproduce the results of this study, no changes are required -- all correspon
 
 1. First, install dependencies:
 ```commandline
-pip install -r requirements_sentence_transformers.txt
+pip install -r requirements_nonquantized.txt
 ```
 2. Specify the task and model to evaluate in the environment variables `TASK_NAME` and `MODEL_NAME`, for example:
 ```commandline
@@ -46,7 +46,7 @@ python src/run_nonquantized.py
 
 1. First, install dependencies:
 ```commandline
-pip install -r requirements_nonquantized.txt
+pip install -r requirements_llamacpp.txt
 ```
 2. Specify the task and model to evaluate in the environment variables `TASK_NAME` and `MODEL_NAME`, for example:
 ```commandline
